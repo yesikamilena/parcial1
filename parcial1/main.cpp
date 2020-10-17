@@ -9,6 +9,8 @@ int main()
     double XO=0.0, Vo=0.0, t=0.0, XD=0.0, alpha=0.0, YD=0.0, YO=0.0, g=0.0;
     g=-9.81;
 
+    double d=0.0;
+
     short int caso=0;
 
 
@@ -22,8 +24,9 @@ int main()
     bool golpedef=0;
     bool golpeof=0;
 
+
     //Ecuación 1:
-    e1=(XD==XO+Vo*cos(alpha));
+    e1=(XD==XO+Vo*cos(alpha)*t);
 
     //Ecuación 2:
     e2=(YD==YO+Vo*sin(alpha)-g*t);
@@ -32,7 +35,7 @@ int main()
     //cout<<e1<<e2;
 
     //Ecuación 1:
-    e3=(XO==XD+Vo*cos(alpha));
+    e3=(XO==XD+Vo*cos(alpha)*t);
 
     //Ecuación 2:
     e4=(YO==YD+Vo*sin(alpha)-g*t);
@@ -64,12 +67,12 @@ int main()
             Vo=20.0;
             t=2.0;      //Condición 1
             //XD=0.0;
-            alpha=25.0;
+            alpha=25.0; //Condición general
             //YD=0.0;
             YO=4.0;
 
             //Ecuación 1
-            XD=XO+Vo*cos(alpha);    //Condicón 2
+            XD=XO+Vo*cos(alpha)*t;    //Condicón 2
             //Ecuación 2
             YD=YO+Vo*sin(alpha)-g*t;    //Condición 2
 
@@ -83,7 +86,7 @@ int main()
             //YD=0.0;
             YO=200.0;
 
-            XD=XO+Vo*cos(alpha);
+            XD=XO+Vo*cos(alpha)*t;
             YD=YO+Vo*sin(alpha)-g*t;
 
              cout<<"Disparo 2: "<< "XO= " << XO << "; Vo=" << Vo << "; to= " << t << "; XD= " << XD<< "; alpha= "<< alpha<< "; YD= "<< YD<< "; YO= "<< YO<<endl;
@@ -97,7 +100,7 @@ int main()
             //YD=0.0;
             YO=20.0;
 
-            XD=XO+Vo*cos(alpha);
+            XD=XO+Vo*cos(alpha)*t;
             YD=YO+Vo*sin(alpha)-g*t;
 
             cout<<"Disparo 3: "<< "XO= " << XO << "; Vo=" << Vo << "; to= " << t << "; XD= " << XD<< "; alpha= "<< alpha<< "; YD= "<< YD<< "; YO= "<< YO<<endl;
@@ -111,6 +114,26 @@ int main()
             //Condición 3: El punto de encuentro de las bolas debe ser a 0,025d del cañón defensivo
             //Condición 4: Para que el defensivo golpee al defensivo, se deben cumplir las ecuaciones 3 y 4.
 
+
+            XO=1.0;
+            Vo=100.0;
+            t=5.0;      //Condición 1
+            //XD=20.0;
+            alpha=40.0; //Condición general
+            //YD=0.0;
+            YO=20.0;
+
+            // Condición 4
+            XO=XD+Vo*cos(alpha)*t;        //Ecuación 3
+            YO=YD+Vo*sin(alpha)-g*t;    //Ecuación 4
+
+            //Condición 2
+            //alphaO=alphaD
+
+            YO=YD;
+
+
+            d=XD-XO;
 
 
 
